@@ -1,0 +1,6 @@
+.nuget
+*/obj
+packages
+*/bin
+*.txt
+*.sln
