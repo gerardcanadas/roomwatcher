@@ -10,7 +10,7 @@ namespace roomwatcher.bo.sensors.interfaces
     {
         string Id { get; set; }
         string SensorId { get; set; }
-        string DateTime { get; set; }
+        string Datetime { get; set; }
         string Value { get; set; }
     }
 }

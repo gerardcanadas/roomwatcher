@@ -11,8 +11,19 @@ namespace roomwatcher.bo.sensors.ir
     {
         public string Id { get; set; }
         public string SensorId { get; set; }
-        public string DateTime { get; set; }
+        public string Datetime { get; set; }
         public string Value { get; set; }
-        public string test { get; set; }
+
+        public IRDTO()
+        {
+
+        }
+
+        public IRDTO(string sensorId, string value)
+        {
+            this.SensorId = sensorId;
+            this.Datetime = DateTime.Now.ToString();
+            this.Value = value;
+        }
     }
 }

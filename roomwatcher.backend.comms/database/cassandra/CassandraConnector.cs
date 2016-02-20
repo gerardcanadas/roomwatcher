@@ -16,22 +16,24 @@ namespace roomwatcher.backend.comms.database.cassandra
         protected ISession session;
         protected PreparedQueries preparedQ;
         private Cluster cluster;
-        public void StartConnection(string[] ServerPoints, string KeySpace)
+        private string[] SERVER_POINTS = new string[] { "192.168.139.133" };
+        private const string KEYSPACE = "sensors_data";
+        private void StartConnection()
         {
             // Create a cluster instance the cassandra node 
             cluster = Cluster.Builder()
-              .AddContactPoints(ServerPoints)
+              .AddContactPoints(SERVER_POINTS)
                 //.WithPort(9160)
               .Build();
             // Create connections to the nodes using a keyspace
-            session = cluster.Connect(KeySpace);
+            session = cluster.Connect(KEYSPACE);
 
             // Prepare most frequent queries
             preparedQ = new PreparedQueries((Session)session);
 
         }
 
-        public void StopConnection()
+        private void StopConnection()
         {
             cluster.Shutdown();
             cluster.Dispose();
@@ -48,7 +50,9 @@ namespace roomwatcher.backend.comms.database.cassandra
             }
             
             // Execute the bound statement with the provided parameters
+            StartConnection();
             session.Execute(statement);
+            StopConnection();
             if (OnCassandraEventSaved != null)
                 OnCassandraEventSaved(this, new CassandraEventArgs(data));
         }

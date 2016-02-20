@@ -101,6 +101,10 @@
       <Project>{22026157-b4e4-4eb6-9d3a-ac36c92686fa}</Project>
       <Name>roomwatcher.backend.comms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\roomwatcher.bo\roomwatcher.bo.csproj">
+      <Project>{03df46d4-c67c-4ed6-9596-112b662b0e08}</Project>
+      <Name>roomwatcher.bo</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
